@@ -51,7 +51,7 @@ yyy.onmousedown = function (a) {
   var y = a.clientY
   if (eraserEnabled) {
     using = true
-    context.clearRect(x, y, 10, 10)
+    context.clearRect(x-5, y-5, 10, 10)
   } else {
     using = true
     lastPoint = {
@@ -67,7 +67,7 @@ yyy.onmousemove = function (a) {
     var y = a.clientY
     if (eraserEnabled) {
         if (using) {
-            content.clearRect(x, y, 10, 10)
+            content.clearRect(x-5, y-5, 10, 10)
         }
     } else {
         if (using) {
