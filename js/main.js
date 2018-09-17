@@ -1,5 +1,22 @@
 var yyy = document.getElementById('xxx');
 
+// 修改canvas的大小
+var pageWidth = document.documentElement.clientWidth
+var pageHeight = document.documentElement.clientHeight
+
+yyy.width = pageWidth
+yyy.height = pageHeight
+
+
+// 防止拉伸页面改变
+window.onresize = function(){
+  var pageWidth = document.documentElement.clientWidth
+  var pageHeight = document.documentElement.clientHeight
+
+  yyy.width = pageWidth
+  yyy.height = pageHeight
+}
+
 var content = yyy.getContext('2d');
 
 // content.fillStyle = 'black';
