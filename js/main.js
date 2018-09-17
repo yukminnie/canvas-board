@@ -68,3 +68,8 @@ yyy.onmousemove = function(a){
 yyy.onmouseup = function(b){
   using = false
 }
+
+var eraserEnabled = false
+eraser.onclick = function(){
+  eraserEnabled = !eraserEnabled
+}
