@@ -1,0 +1,9 @@
+/* 
+1, canvas是inline-block元素
+2, canvas宽高是等比例缩放的，先不要在css定义宽高
+3, 
+*/
+#xxx{
+  background: green;
+  /* display: block; */
+}
