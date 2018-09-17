@@ -8,7 +8,8 @@ var content = yyy.getContext('2d');
 function drawCircle(x, y, radius){
   content.beginPath()
   content.arc(x, y, radius, 0, 180)
-  content.stroke()
+  // content.stroke()
+  content.fill()
 }
 
 var painting = false
@@ -17,14 +18,14 @@ yyy.onmousedown = function(a){
   painting = true
   var x = a.clientX
   var y = a.clientY
-  drawCircle(x, y, 5)
+  drawCircle(x, y, 1)
 }
 
 yyy.onmousemove = function(a){
   if (painting){
       var x = a.clientX
       var y = a.clientY
-      drawCircle(x, y, 5)
+      drawCircle(x, y, 1)
   }else{
 
   }
