@@ -7,3 +7,11 @@
   background: green;
   /* display: block; */
 }
+
+/* 
+canvas 绘图没有坐标偏移
+*/
+
+body {
+  margin: 0;
+}
