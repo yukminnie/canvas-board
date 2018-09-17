@@ -9,7 +9,7 @@ yyy.height = pageHeight
 
 
 // 防止拉伸页面改变
-window.onresize = function(){
+window.onresize = function () {
   var pageWidth = document.documentElement.clientWidth
   var pageHeight = document.documentElement.clientHeight
 
@@ -23,7 +23,7 @@ var content = yyy.getContext('2d');
 // content.fillRect(10,10, 100, 100);
 
 // 画圆
-function drawCircle(x, y, radius){
+function drawCircle(x, y, radius) {
   content.beginPath()
   content.arc(x, y, radius, 0, 180)
   // content.stroke()
@@ -31,7 +31,7 @@ function drawCircle(x, y, radius){
 }
 
 // 画线
-function drawLine(x1, y1, x2, y2){
+function drawLine(x1, y1, x2, y2) {
   content.beginPath();
   content.moveTo(x1, y1)
   content.lineWidth = 5
@@ -41,35 +41,53 @@ function drawLine(x1, y1, x2, y2){
 }
 
 var using = false
-var lastPoint = {x: undefined, y: undefined}
-
-yyy.onmousedown = function(a){
-  using = true
-  var x = a.clientX
-  var y = a.clientY
-  lastPoint = {'x': x, 'y': y}
-  // drawCircle(x, y, 1)
-  
+var lastPoint = {
+  x: undefined,
+  y: undefined
 }
 
-yyy.onmousemove = function(a){
-  if (using){
-      var x = a.clientX
-      var y = a.clientY
-      // drawCircle(x, y, 1)
-      var newPoint = {'x': x, 'y': y}
-      drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y)
-      lastPoint = newPoint
-  }else{
-
+yyy.onmousedown = function (a) {
+  var x = a.clientX
+  var y = a.clientY
+  if (eraserEnabled) {
+    using = true
+    context.clearRect(x, y, 10, 10)
+  } else {
+    using = true
+    lastPoint = {
+        'x': x,
+        'y': y
+  }
+   // drawCircle(x, y, 1)
   }
 }
 
-yyy.onmouseup = function(b){
+yyy.onmousemove = function (a) {
+    var x = a.clientX
+    var y = a.clientY
+    if (eraserEnabled) {
+        if (using) {
+            content.clearRect(x, y, 10, 10)
+        }
+    } else {
+        if (using) {
+            var newPoint = {
+                'x': x,
+                'y': y,
+            }
+            drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y)
+            // drawCircle(x, y, 1)
+            lastPoint = newPoint
+        }
+    }
+}
+
+
+yyy.onmouseup = function (b) {
   using = false
 }
 
 var eraserEnabled = false
-eraser.onclick = function(){
+eraser.onclick = function () {
   eraserEnabled = !eraserEnabled
 }
