@@ -40,11 +40,11 @@ function drawLine(x1, y1, x2, y2){
   content.closePath()
 }
 
-var painting = false
+var using = false
 var lastPoint = {x: undefined, y: undefined}
 
 yyy.onmousedown = function(a){
-  painting = true
+  using = true
   var x = a.clientX
   var y = a.clientY
   lastPoint = {'x': x, 'y': y}
@@ -53,7 +53,7 @@ yyy.onmousedown = function(a){
 }
 
 yyy.onmousemove = function(a){
-  if (painting){
+  if (using){
       var x = a.clientX
       var y = a.clientY
       // drawCircle(x, y, 1)
@@ -66,5 +66,5 @@ yyy.onmousemove = function(a){
 }
 
 yyy.onmouseup = function(b){
-  painting = false
+  using = false
 }
