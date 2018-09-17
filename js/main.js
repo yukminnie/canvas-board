@@ -90,4 +90,9 @@ yyy.onmouseup = function (b) {
 var eraserEnabled = false
 eraser.onclick = function () {
   eraserEnabled = !eraserEnabled
+  if (eraserEnabled) {
+      eraser.textContent = '画笔'
+  } else {
+      eraser.textContent = '橡皮檫'
+  }
 }
