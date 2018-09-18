@@ -40,7 +40,7 @@ function drawCircle(x, y, radius) {
 function drawLine(x1, y1, x2, y2) {
     content.beginPath();
     content.moveTo(x1, y1)
-    content.lineWidth = 5
+    // content.lineWidth = 5
     content.lineTo(x2, y2)
     content.stroke()
     content.closePath()
@@ -185,4 +185,16 @@ green.onclick = function() {
     red.classList.remove('active')
     blue.classList.remove('active')
     black.classList.remove('active')
+}
+
+thin.onclick = function() {
+    thin.classList.add('active')
+    thick.classList.remove('active')
+    content.lineWidth = 5
+}
+
+thick.onclick = function() {
+    thick.classList.add('active')
+    thin.classList.remove('active')
+    content.lineWidth = 10
 }
