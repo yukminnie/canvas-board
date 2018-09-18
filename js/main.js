@@ -152,3 +152,25 @@ pen.onclick = function() {
     pen.classList.add('active')
     eraser.classList.remove('active')
 }
+
+red.onclick = function() {
+    // content.fillStyle = 'red'
+    content.strokeStyle = 'red'
+    red.classList.add('active')
+    blue.classList.remove('active')
+    green.classList.remove('active')
+}
+
+blue.onclick = function() {
+    content.strokeStyle = 'blue'
+    blue.classList.add('active')
+    red.classList.remove('active')
+    green.classList.remove('active')
+}
+
+green.onclick = function() {
+    content.strokeStyle = 'green'
+    green.classList.add('active')
+    red.classList.remove('active')
+    blue.classList.remove('active')
+}
