@@ -153,12 +153,22 @@ pen.onclick = function() {
     eraser.classList.remove('active')
 }
 
+black.onclick = function() {
+    // content.fillStyle = 'red'
+    content.strokeStyle = 'black'
+    black.classList.add('active')
+    red.classList.remove('active')
+    blue.classList.remove('active')
+    green.classList.remove('active')
+}
+
 red.onclick = function() {
     // content.fillStyle = 'red'
     content.strokeStyle = 'red'
     red.classList.add('active')
     blue.classList.remove('active')
     green.classList.remove('active')
+    black.classList.remove('active')
 }
 
 blue.onclick = function() {
@@ -166,6 +176,7 @@ blue.onclick = function() {
     blue.classList.add('active')
     red.classList.remove('active')
     green.classList.remove('active')
+    black.classList.remove('active')
 }
 
 green.onclick = function() {
@@ -173,4 +184,5 @@ green.onclick = function() {
     green.classList.add('active')
     red.classList.remove('active')
     blue.classList.remove('active')
+    black.classList.remove('active')
 }

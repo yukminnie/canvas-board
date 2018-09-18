@@ -66,6 +66,10 @@ ul, ol {
     transition: all 0.3s;
 }
 
+.colors li.black {
+    background: black;
+}
+
 .colors li.red{
     background: red;
 }
