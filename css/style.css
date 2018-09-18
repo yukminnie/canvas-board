@@ -15,6 +15,7 @@ canvas 绘图没有坐标偏移
 
 body {
     margin: 0;
+    overflow: hidden;
 }
 
 .tools {
