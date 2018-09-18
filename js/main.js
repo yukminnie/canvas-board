@@ -157,6 +157,16 @@ clear.onclick = function() {
     content.clearRect(0, 0, board.width, board.height)
 }
 
+down.onclick = function() {
+    var url = board.toDataURL('image/png')
+    var pic = document.createElement('a')
+    document.body.appendChild(pic)
+    pic.href = url
+    pic.target = '_blank'
+    pic.download = 'My picture'
+    pic.click()
+}
+
 black.onclick = function() {
     // content.fillStyle = 'red'
     content.strokeStyle = 'black'
