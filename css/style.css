@@ -2,17 +2,17 @@
 1, canvas是inline-block元素
 2, canvas宽高是等比例缩放的，先不要在css定义宽高
 3, display: block 没有意义，是一个尝试
-*/ #xxx {
-  background: green;
-  /* display: block; */
+*/
+#xxx {
+    background: green;
+    /* display: block; */
 }
 
 /*
 canvas 绘图没有坐标偏移
 */
-
 body {
-  margin: 0;
+    margin: 0;
 }
 
 #eraser {
