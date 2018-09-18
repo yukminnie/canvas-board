@@ -1,8 +1,10 @@
 // 1，content 和 context，第一次出错系统运行正常 ？
 // 2，button事件的绑定， class 的定位没有起作用
+// 3，引号真的是乱糟糟
 
 var board = document.getElementById('board');
 var content = board.getContext('2d');
+var log = console.log.bind(console)
 
 autoSetCanvasSize(board)
 
@@ -45,53 +47,94 @@ function drawLine(x1, y1, x2, y2) {
 }
 
 // 开始画
-function listionToMouse() {
+function listionToMouse(canvas) {
     var using = false
     var lastPoint = {
         x: undefined,
         y: undefined
     }
-
-    board.onmousedown = function(a) {
-        var x = a.clientX
-        var y = a.clientY
-        if (eraserEnabled) {
-            using = true
-            content.clearRect(x - 5, y - 5, 10, 10)
-        } else {
-            using = true
-            lastPoint = {
-                'x': x,
-                'y': y
-            }
-            // drawCircle(x, y, 1)
-        }
-    }
-
-    board.onmousemove = function(a) {
-        var x = a.clientX
-        var y = a.clientY
-        if (eraserEnabled) {
-            if (using) {
+    // 根据特性来进行判断，而不是根据设备(针对同时支持触屏和鼠标的设备)
+    if (document.body.ontouchstart !== undefined) {
+        canvas.ontouchstart = function(a) {
+            var x = a.touches[0].clientX
+            var y = a.touches[0].clientY
+            if (eraserEnabled) {
+                using = true
                 content.clearRect(x - 5, y - 5, 10, 10)
-            }
-        } else {
-            if (using) {
-                var newPoint = {
+            } else {
+                using = true
+                lastPoint = {
                     'x': x,
-                    'y': y,
+                    'y': y
                 }
-                drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y)
                 // drawCircle(x, y, 1)
-                lastPoint = newPoint
             }
+        }
+        canvas.ontouchmove = function(a) {
+            var x = a.touches[0].clientX
+            var y = a.touches[0].clientY
+            if (eraserEnabled) {
+                if (using) {
+                    content.clearRect(x - 5, y - 5, 10, 10)
+                }
+            } else {
+                if (using) {
+                    var newPoint = {
+                        'x': x,
+                        'y': y,
+                    }
+                    drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y)
+                    // drawCircle(x, y, 1)
+                    lastPoint = newPoint
+                }
+            }
+        }
+        canvas.ontouchend = function(b) {
+            using = false
+        }
+    } else {
+        canvas.onmousedown = function(a) {
+            var x = a.clientX
+            var y = a.clientY
+            if (eraserEnabled) {
+                using = true
+                content.clearRect(x - 5, y - 5, 10, 10)
+            } else {
+                using = true
+                lastPoint = {
+                    'x': x,
+                    'y': y
+                }
+                // drawCircle(x, y, 1)
+            }
+        }
+
+        canvas.onmousemove = function(a) {
+            var x = a.clientX
+            var y = a.clientY
+            if (eraserEnabled) {
+                if (using) {
+                    content.clearRect(x - 5, y - 5, 10, 10)
+                }
+            } else {
+                if (using) {
+                    var newPoint = {
+                        'x': x,
+                        'y': y,
+                    }
+                    drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y)
+                    // drawCircle(x, y, 1)
+                    lastPoint = newPoint
+                }
+            }
+        }
+
+
+        canvas.onmouseup = function(b) {
+            using = false
         }
     }
 
-
-    board.onmouseup = function(b) {
-        using = false
-    }
 }
 
 // 橡皮擦状态
