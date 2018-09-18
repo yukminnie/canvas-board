@@ -28,6 +28,9 @@ body {
     height: 1.5em;
 }
 
+.tools svg.active {
+    fill: red;
+}
 .icon {
    width: 1em; height: 1em;
    vertical-align: -0.15em;
