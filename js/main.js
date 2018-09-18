@@ -1,3 +1,6 @@
+// 1，content 和 context，第一次出错系统运行正常 ？
+// 2，button事件的绑定， class 的定位没有起作用
+
 var board = document.getElementById('board');
 var content = board.getContext('2d');
 
