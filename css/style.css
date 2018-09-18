@@ -26,10 +26,13 @@ body {
 .tools svg {
     width: 1.5em;
     height: 1.5em;
+    padding: 10px;
+    transition: all 0.3s;
 }
 
 .tools svg.active {
     fill: red;
+    transform: scale(1.2);
 }
 .icon {
    width: 1em; height: 1em;
