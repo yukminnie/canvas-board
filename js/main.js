@@ -1,26 +1,27 @@
-var yyy = document.getElementById('xxx');
+var board = document.getElementById('board');
+var content = board.getContext('2d');
 
-// 修改canvas的大小
-var pageWidth = document.documentElement.clientWidth
-var pageHeight = document.documentElement.clientHeight
+autoSetCanvasSize(board)
 
-yyy.width = pageWidth
-yyy.height = pageHeight
+listionToMouse(board)
 
-
-// 防止拉伸页面改变
-window.onresize = function() {
+// 设置尺寸
+function setCanvasSize(canvas) {
     var pageWidth = document.documentElement.clientWidth
     var pageHeight = document.documentElement.clientHeight
 
-    yyy.width = pageWidth
-    yyy.height = pageHeight
+    canvas.width = pageWidth
+    canvas.height = pageHeight
 }
 
-var content = yyy.getContext('2d');
+// 自动设置尺寸
+function autoSetCanvasSize(canvas) {
+    setCanvasSize(canvas)
 
-// content.fillStyle = 'black';
-// content.fillRect(10,10, 100, 100);
+    window.onresize = function() {
+        setCanvasSize(canvas)
+    }
+}
 
 // 画圆
 function drawCircle(x, y, radius) {
@@ -40,54 +41,60 @@ function drawLine(x1, y1, x2, y2) {
     content.closePath()
 }
 
-var using = false
-var lastPoint = {
-    x: undefined,
-    y: undefined
-}
-
-yyy.onmousedown = function(a) {
-    var x = a.clientX
-    var y = a.clientY
-    if (eraserEnabled) {
-        using = true
-        context.clearRect(x - 5, y - 5, 10, 10)
-    } else {
-        using = true
-        lastPoint = {
-            'x': x,
-            'y': y
-        }
-        // drawCircle(x, y, 1)
+// 开始画
+function listionToMouse() {
+    var using = false
+    var lastPoint = {
+        x: undefined,
+        y: undefined
     }
-}
 
-yyy.onmousemove = function(a) {
-    var x = a.clientX
-    var y = a.clientY
-    if (eraserEnabled) {
-        if (using) {
+    board.onmousedown = function(a) {
+        var x = a.clientX
+        var y = a.clientY
+        if (eraserEnabled) {
+            using = true
             content.clearRect(x - 5, y - 5, 10, 10)
-        }
-    } else {
-        if (using) {
-            var newPoint = {
+        } else {
+            using = true
+            lastPoint = {
                 'x': x,
-                'y': y,
+                'y': y
             }
-            drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y)
             // drawCircle(x, y, 1)
-            lastPoint = newPoint
         }
+    }
+
+    board.onmousemove = function(a) {
+        var x = a.clientX
+        var y = a.clientY
+        if (eraserEnabled) {
+            if (using) {
+                content.clearRect(x - 5, y - 5, 10, 10)
+            }
+        } else {
+            if (using) {
+                var newPoint = {
+                    'x': x,
+                    'y': y,
+                }
+                drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y)
+                // drawCircle(x, y, 1)
+                lastPoint = newPoint
+            }
+        }
+    }
+
+
+    board.onmouseup = function(b) {
+        using = false
     }
 }
 
-
-yyy.onmouseup = function(b) {
-    using = false
-}
-
+// 橡皮擦状态
 var eraserEnabled = false
+
+// 切换开关
 eraser.onclick = function() {
     eraserEnabled = !eraserEnabled
     if (eraserEnabled) {
