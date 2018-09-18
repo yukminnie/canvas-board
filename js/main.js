@@ -153,6 +153,10 @@ pen.onclick = function() {
     eraser.classList.remove('active')
 }
 
+clear.onclick = function() {
+    content.clearRect(0, 0, board.width, board.height)
+}
+
 black.onclick = function() {
     // content.fillStyle = 'red'
     content.strokeStyle = 'black'
