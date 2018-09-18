@@ -18,6 +18,15 @@ body {
     overflow: hidden;
 }
 
+#board {
+    display: block;
+    background: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+
 .tools {
     position: fixed;
     top: 20px;
