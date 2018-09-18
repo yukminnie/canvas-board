@@ -142,10 +142,9 @@ var eraserEnabled = false
 
 // 切换开关
 eraser.onclick = function() {
-    eraserEnabled = !eraserEnabled
-    if (eraserEnabled) {
-        eraser.textContent = '画笔'
-    } else {
-        eraser.textContent = '橡皮檫'
-    }
+    eraserEnabled = true
+}
+
+pen.onclick = function() {
+    eraserEnabled = false
 }

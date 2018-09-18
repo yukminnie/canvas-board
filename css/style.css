@@ -5,7 +5,7 @@
 */
 
 .class-canvas-board {
-    background: green;
+    background: white;
     display: block;
 }
 
@@ -17,8 +17,20 @@ body {
     margin: 0;
 }
 
-.class-button-eraser {
+.tools {
     position: fixed;
-    bottom: 0;
-    left: 0;
+    top: 20px;
+    left: 20px;
+}
+
+.tools svg {
+    width: 1.5em;
+    height: 1.5em;
+}
+
+.icon {
+   width: 1em; height: 1em;
+   vertical-align: -0.15em;
+   fill: currentColor;
+   overflow: hidden;
 }
