@@ -194,11 +194,20 @@ green.onclick = function() {
 thin.onclick = function() {
     thin.classList.add('active')
     thick.classList.remove('active')
-    content.lineWidth = 5
+    crude.classList.remove('active')
+    content.lineWidth = 1
 }
 
 thick.onclick = function() {
     thick.classList.add('active')
     thin.classList.remove('active')
+    crude.classList.remove('active')
+    content.lineWidth = 5
+}
+
+crude.onclick = function() {
+    crude.classList.add('active')
+    thin.classList.remove('active')
+    thick.classList.remove('active')
     content.lineWidth = 10
 }

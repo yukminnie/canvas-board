@@ -103,13 +103,20 @@ ul, ol {
     transform: scale(1.2);
 }
 .sizes li.thin {
-    height: 5px;
+    height: 4px;
     width: 50px;
     background: black;
 }
 
 .sizes li.thick {
-    height: 10px;
+    height: 8px;
+    width: 50px;
+    background: black;
+    margin-top: 20px;
+}
+
+.sizes li.crude {
+    height: 12px;
     width: 50px;
     background: black;
     margin-top: 20px;
